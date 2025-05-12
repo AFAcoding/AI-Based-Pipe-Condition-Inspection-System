@@ -47,7 +47,7 @@ The AI module automates video analysis to identify:
 
 1. Collect inspection video data.
 2. Preprocess data and generate annotations.
-3. Train object detection models (YOLO, etc.).
+3. Train object detection models (YOLO.).
 4. Evaluate detection accuracy (mAP, precision, recall).
 5. Deploy prototype to edge devices for benchmarking.
 
@@ -66,58 +66,7 @@ The AI module automates video analysis to identify:
 
 - **Frameworks**: PyTorch, YOLOv8, OpenCV
 - **Languages**: Python
-- **Deployment**: Edge devices (e.g., Jetson Nano, Raspberry Pi)
 - **Tools**: FFmpeg, sklearn, YAML, shutil
 
 ---
 
-## Getting Started
-
-### Clone the repo:
-```bash
-git clone https://github.com/your-username/pipe-inspection-ai.git
-cd pipe-inspection-ai
-```
-
-### Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-### Prepare your dataset:
-Organize your images and labels:
-```
-/images
-/labels
-```
-
-### Train the model:
-```bash
-yolo task=detect mode=train data=data.yaml model=yolov8n.pt epochs=100 imgsz=640
-```
-
-### Evaluate the model:
-```bash
-yolo task=detect mode=val model=runs/train/exp/weights/best.pt data=data.yaml
-```
-
-### Export to ONNX or TensorRT (for edge devices):
-```bash
-yolo export model=best.pt format=onnx
-```
-
----
-
-## Contributing
-
-1. Fork the repo.
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m "add feature"`
-4. Push to GitHub: `git push origin feature-name`
-5. Open a pull request.
-
----
-
-## License
-
-This project is licensed under the MIT License.
