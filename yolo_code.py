@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""YOLO_V8.ipynb
+"""
 """
 
 pip install ultralytics
@@ -165,9 +165,53 @@ with open('data.yaml', 'w') as f:
 
 """**Training**
 
-*   **yolov8n.yaml** = from 0
-*  **yolov8s.pt** = pre-trained
+*   **.yaml** = from 0
+*  **.pt** = pre-trained
+
+## **YOLO V5 small**
 """
+
+modelv5 = YOLO('yolov5s.pt')  # pre-trained YOLO
+modelv5.train(data="data.yaml", epochs=30, imgsz=640, augment=True)
+# - epochs: number of training epochs
+# - imgsz: image size (resize input images to 640x640)
+# - augment: enable data augmentation during training for better generalization
+
+results = modelv5.predict(
+    source="images/test",
+    save=True,
+    save_txt=True,      # Save prediction results as .txt files (YOLO format)
+    save_conf=True,     # Include confidence scores in the saved labels
+    conf=0.25,          # Confidence threshold to filter predictions
+    iou=0.5,            # IOU threshold for non-max suppression
+    verbose=True        # Print detailed results per image
+)
+
+# Quantitative evaluation on the validation/test set (mAP, precision, recall)
+metrics = modelv5.val()
+
+"""## **YOLO V5 nano**"""
+
+modelv5n = YOLO('yolov5n.pt')  # pre-trained YOLO
+modelv5n.train(data="data.yaml", epochs=30, imgsz=640, augment=True)
+# - epochs: number of training epochs
+# - imgsz: image size (resize input images to 640x640)
+# - augment: enable data augmentation during training for better generalization
+
+results = modelv5n.predict(
+    source="images/test",
+    save=True,
+    save_txt=True,      # Save prediction results as .txt files (YOLO format)
+    save_conf=True,     # Include confidence scores in the saved labels
+    conf=0.25,          # Confidence threshold to filter predictions
+    iou=0.5,            # IOU threshold for non-max suppression
+    verbose=True        # Print detailed results per image
+)
+
+# Quantitative evaluation on the validation/test set (mAP, precision, recall)
+metrics = modelv5.val()
+
+"""## **YOLO V8 small**"""
 
 model = YOLO('yolov8s.pt')  # pre-trained YOLO
 model.train(data="data.yaml", epochs=30, imgsz=640, augment=True)
@@ -175,8 +219,10 @@ model.train(data="data.yaml", epochs=30, imgsz=640, augment=True)
 # - imgsz: image size (resize input images to 640x640)
 # - augment: enable data augmentation during training for better generalization
 
+# The best model is already saved in the 'runs/train/expX/weights' folder as 'best.pt'
+
 results = model.predict(
-    source="dataset/images/test",
+    source="images/test",
     save=True,
     save_txt=True,      # Save prediction results as .txt files (YOLO format)
     save_conf=True,     # Include confidence scores in the saved labels
@@ -187,4 +233,25 @@ results = model.predict(
 
 # Quantitative evaluation on the validation/test set (mAP, precision, recall)
 metrics = model.val()
-print(metrics)
+
+"""## **YOLO V8 nano**"""
+
+modelv8n = YOLO('yolov8n.pt')# pre-trained YOLO
+modelv8n.train(data="data.yaml",epochs=30, imgsz=640, augment=True)
+
+# - epochs: number of training epochs
+# - imgsz: image size (resize input images to 640x640)
+# - augment: enable data augmentation during training for better generalization
+
+results = modelv8n.predict(
+    source="images/test",
+    save=True,
+    save_txt=True,      # Save prediction results as .txt files (YOLO format)
+    save_conf=True,     # Include confidence scores in the saved labels
+    conf=0.25,          # Confidence threshold to filter predictions
+    iou=0.5,            # IOU threshold for non-max suppression
+    verbose=True        # Print detailed results per image
+)
+
+# Quantitative evaluation on the validation/test set (mAP, precision, recall)
+metrics = modelv8n.val()
