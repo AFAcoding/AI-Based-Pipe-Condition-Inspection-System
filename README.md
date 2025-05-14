@@ -13,6 +13,8 @@ This project explores the feasibility of integrating an AI-based inspection modu
 - Assess edge device compatibility in terms of speed and resource efficiency.
 - Review the quality and diversity of available labeled data.
 
+![Pipe](pipe.png)
+
 ---
 
 ## Background
