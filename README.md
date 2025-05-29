@@ -19,7 +19,7 @@ This project explores the feasibility of integrating an AI-based inspection modu
 
 ## Real-time blockage detection on video
 
-![Pipe](Implementation_YOLOv5n.mp4)
+[Pipe](./Implementation_YOLOv5n.mp4)
 
 
 ---
